@@ -1,0 +1,30 @@
+@import "../../../../styles/breakpoints";
+
+.navbar-bg {
+  background: rgb(68, 30, 132);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(68, 30, 132, 1) 0%,
+    rgba(75, 30, 133, 1) 35%,
+    rgba(89, 29, 135, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(68, 30, 132, 1) 0%,
+    rgba(75, 30, 133, 1) 35%,
+    rgba(89, 29, 135, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(68, 30, 132, 1) 0%,
+    rgba(75, 30, 133, 1) 35%,
+    rgba(89, 29, 135, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#441e84",endColorstr="#591d87",GradientType=1);
+}
+
+.navbar-search {
+  @include max-breakpoint(1199px) {
+    display: none;
+  }
+}
