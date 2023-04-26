@@ -1,4 +1,4 @@
-import { AppText } from "components";
+import { AppText } from "components/shared";
 import styles from "./scss/navbar.module.scss";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { NavbarAccountBtn } from "../AppText/@types";

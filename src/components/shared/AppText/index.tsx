@@ -1,4 +1,4 @@
-import type { Align, AppTextProps, Color, Decor, Size, Weight } from "./@types";
+import { AppTextProps, Color, Size, Align, Weight, Decor } from "./@types";
 
 const AppText: React.FC<AppTextProps> = ({
   as,

@@ -36,4 +36,3 @@ interface NavbarAccountBtn {
   readonly icon?: ElementType;
   readonly img?: string;
 }
-export { Size, Color, Align, Weight, Decor, AppTextProps, NavbarAccountBtn };
