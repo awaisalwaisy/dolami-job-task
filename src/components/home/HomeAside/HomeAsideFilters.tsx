@@ -1,21 +1,6 @@
 import { AppText } from "components/shared";
 import { filters } from "./data";
-
-// console.log(Object.keys(filters));
-
-Object.keys(filters).map((key) => {
-  console.log(key);
-  console.log(filters[key as HomeAsideFilterKeys]);
-
-  // map through the array with typescript type
-  const filterArr: HomeAsideFilterItem[] = filters[
-    key as HomeAsideFilterKeys
-  ] as HomeAsideFilterItem[];
-
-  filterArr.map((filter: any) => {
-    console.log(filter);
-  });
-});
+import { capitalize } from "utils";
 
 const HomeAsideFilters: React.FC = () => {
   return (
@@ -26,14 +11,15 @@ const HomeAsideFilters: React.FC = () => {
         ] as HomeAsideFilterItem[];
 
         return (
-          <div key={key}>
+          <div key={key} id={key} className="mb-5">
             <AppText as="h4" size="lg" weight="bold" className={"font-inter"}>
-              {key}
+              {capitalize(key)}
             </AppText>
             <ul>
-              {filterArr.map((filter: any) => (
-                <li key={filter} className="flex items-center gap-x-2">
+              {filterArr.map((filter: HomeAsideFilterItem) => (
+                <li key={filter.id} className="flex items-center gap-x-2">
                   <input
+                    name={filter.name}
                     type="checkbox"
                     className="checkbox checkbox-sm rounded"
                   />
@@ -43,7 +29,7 @@ const HomeAsideFilters: React.FC = () => {
                     weight="normal"
                     className={"font-inter"}
                   >
-                    {filter.name}
+                    {filter.label}
                   </AppText>
                 </li>
               ))}

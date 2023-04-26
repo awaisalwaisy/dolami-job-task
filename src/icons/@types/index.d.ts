@@ -1,0 +1,3 @@
+type PageIconProps = {
+  color: string;
+};

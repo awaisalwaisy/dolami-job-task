@@ -1,6 +1,6 @@
 import { AppText } from "components/shared";
 
-const HomeAsideCategory: React.FC<Omit<HomeAsideCategory, "id">> = ({
+const HomeAsideCategory: React.FC<HomeAsideCategoryProps> = ({
   name,
   options,
 }) => {

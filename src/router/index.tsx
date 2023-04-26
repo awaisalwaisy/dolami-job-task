@@ -1,9 +1,10 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../pages/HomePage";
+const MarketPage = React.lazy(() => import("pages/MarketPage"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <MarketPage />,
   },
 ]);

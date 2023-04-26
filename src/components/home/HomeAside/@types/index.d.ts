@@ -4,7 +4,9 @@ interface HomeAsideCategory {
   readonly options?: HomeAsideCategory[];
 }
 
-type HomeAsideCategoryProps = Omit<HomeAsideCategory, "id">;
+type HomeAsideCategoryProps = {
+  readonly className?: string | string[];
+} & Omit<HomeAsideCategory, "id">;
 
 interface HomeAsideFilterItem {
   readonly id: number;
@@ -22,3 +24,7 @@ type HomeAsideFilter = Record<
   HomeAsideFilterKeys,
   HomeAsideFilterItem[] | string
 >;
+
+type HomeAsideProps = {
+  readonly className?: string | string[];
+};
