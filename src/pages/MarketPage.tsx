@@ -1,6 +1,6 @@
 import { AppText } from "components/shared";
 import { HomeAside, HomeItem, HomePagination } from "components/home";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { Bars2Icon } from "@heroicons/react/24/solid";
 import { useWindowSize } from "usehooks-ts";
 import { itemsData } from "data/items-data";
@@ -67,14 +67,18 @@ const MarketPage: React.FC = () => {
     console.log(e.target.value);
 
     if (e.target.value === "price-low-to-high") {
-      setData(itemsData.sort((a, b) => a.info.price - b.info.price));
+      setData([...itemsData.sort((a, b) => a.info.price - b.info.price)]);
     } else if (e.target.value === "price-high-to-low") {
-      setData(itemsData.sort((a, b) => b.info.price - a.info.price));
+      setData([...itemsData.sort((a, b) => b.info.price - a.info.price)]);
     } else if (e.target.value === "customer-review") {
-      setData(itemsData.sort((a, b) => b.feedback.rating - a.feedback.rating));
+      setData([
+        ...itemsData.sort((a, b) => b.feedback.rating - a.feedback.rating),
+      ]);
     } else {
-      console.log("else from sort");
+      setData([...itemsData]);
     }
+
+    console.log(data, "data from sort");
   };
 
   const handlePriceFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,41 +86,41 @@ const MarketPage: React.FC = () => {
 
     // filter on the bases of priceFilter array
     if (value === "under-230") {
-      setData(itemsData.filter((item) => item.info.price < 230));
+      setData([...itemsData.filter((item) => item.info.price < 230)]);
     } else if (value === "240-to-340") {
-      setData(
-        itemsData.filter(
+      setData([
+        ...itemsData.filter(
           (item) => item.info.price >= 240 && item.info.price <= 340
-        )
-      );
+        ),
+      ]);
     } else if (value === "350-to-450") {
-      setData(
-        itemsData.filter(
+      setData([
+        ...itemsData.filter(
           (item) => item.info.price >= 350 && item.info.price <= 450
-        )
-      );
+        ),
+      ]);
     } else if (value === "450-to-550") {
-      setData(
-        itemsData.filter(
+      setData([
+        ...itemsData.filter(
           (item) => item.info.price >= 450 && item.info.price <= 550
-        )
-      );
+        ),
+      ]);
     } else if (value === "550-to-650") {
-      setData(
-        itemsData.filter(
+      setData([
+        ...itemsData.filter(
           (item) => item.info.price >= 550 && item.info.price <= 650
-        )
-      );
+        ),
+      ]);
     } else if (value === "650-to-800") {
-      setData(
-        itemsData.filter(
+      setData([
+        ...itemsData.filter(
           (item) => item.info.price >= 650 && item.info.price <= 800
-        )
-      );
+        ),
+      ]);
     } else if (value === "over-800") {
-      setData(itemsData.filter((item) => item.info.price > 800));
+      setData([...itemsData.filter((item) => item.info.price > 800)]);
     } else {
-      setData(itemsData);
+      setData([...itemsData]);
     }
 
     // console.log(filteredData);
