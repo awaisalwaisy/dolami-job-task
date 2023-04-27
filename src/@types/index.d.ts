@@ -28,3 +28,8 @@ interface ItemData {
     readonly shareId?: string;
   };
 }
+
+interface GlobalStore {
+  searchTitle: string | null;
+  setSearchTitle: (title: string) => void;
+}

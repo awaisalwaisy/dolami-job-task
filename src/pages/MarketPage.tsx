@@ -1,19 +1,28 @@
 import { AppText } from "components/shared";
 import { HomeAside, HomeItem, HomePagination } from "components/home";
-import { CSSProperties, useEffect, useState } from "react";
+import { /* CSSProperties, */ useEffect, useState } from "react";
 import { Bars2Icon } from "@heroicons/react/24/solid";
 import { useWindowSize } from "usehooks-ts";
 import { itemsData } from "data/items-data";
+import useGlobalStore from "stores/global-store";
 
-const styles = {
+/* const styles = {
   aside: {} as CSSProperties,
   main: {} as CSSProperties,
-};
+}; */
 
 const MarketPage: React.FC = () => {
   const [isAside, setAside] = useState(false);
   const { width } = useWindowSize();
-  const [data, setData] = useState(itemsData);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = currentPage * itemsPerPage;
+
+  const [data, setData] = useState(itemsData.slice(startIndex, endIndex));
+
+  const { searchTitle } = useGlobalStore();
 
   /* 
     "featured",
@@ -24,6 +33,22 @@ const MarketPage: React.FC = () => {
     "Polygon:Low to High",
     "Polygon:High to Low",
   */
+
+  useEffect(() => {
+    if (searchTitle) {
+      setData(
+        itemsData.filter((item) =>
+          item.title.toLowerCase().includes(searchTitle.toLowerCase())
+        )
+      );
+    } else {
+      setData(itemsData.slice(startIndex, endIndex));
+    }
+  }, [endIndex, searchTitle, startIndex]);
+
+  useEffect(() => {
+    setData(itemsData.slice(startIndex, endIndex));
+  }, [currentPage, endIndex, startIndex]);
 
   const sortOptions = [
     {
@@ -126,6 +151,20 @@ const MarketPage: React.FC = () => {
     // console.log(filteredData);
   };
 
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+
+    // const startIndex = (pageNumber - 1) * itemsPerPage;
+    // const endIndex = pageNumber * itemsPerPage;
+
+    console.log(currentPage);
+    /*  setTimeout(() => {
+    }, 200); */
+    setData(itemsData.slice(startIndex, endIndex));
+  };
+
+  // const handleSearch = () => {};
+
   return (
     <>
       {width < 768 && !isAside && (
@@ -136,7 +175,6 @@ const MarketPage: React.FC = () => {
           <Bars2Icon className="h-7 w-7 text-white" />
         </aside>
       )}
-
       <article className="flex justify-between m-2">
         {(isAside || width > 768) && (
           <div className="w-64">
@@ -187,7 +225,12 @@ const MarketPage: React.FC = () => {
             )}
           </div>
 
-          <HomePagination />
+          <HomePagination
+            itemsPerPage={10}
+            totalItems={itemsData.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
         </main>
       </article>
     </>

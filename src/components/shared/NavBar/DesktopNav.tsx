@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import NavMenu from "./NavMenu";
 import { accountBtnData } from "./data";
 import { NavLink } from "react-router-dom";
+import useGlobalStore from "stores/global-store";
 
 const DesktopNav: React.FC = () => {
   const { width } = useWindowSize();
@@ -23,6 +24,13 @@ const DesktopNav: React.FC = () => {
       accountBtn.shift();
     }
   }, [accountBtn, width]);
+
+  const { setSearchTitle } = useGlobalStore();
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTitle(e.target.value);
+  };
+
   return (
     <div
       className={`flex justify-between items-center p-3 ${styles["navbar-bg"]}`}
@@ -51,6 +59,7 @@ const DesktopNav: React.FC = () => {
           type="text"
           placeholder="Search"
           className={`input ${styles["navbar-search"]}`}
+          onChange={handleSearch}
         />
 
         {accountBtn.map((btn) => (
