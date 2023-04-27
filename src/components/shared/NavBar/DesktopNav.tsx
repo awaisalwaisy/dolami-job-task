@@ -6,6 +6,7 @@ import { useWindowSize } from "usehooks-ts";
 import { useEffect, useMemo, useState } from "react";
 import NavMenu from "./NavMenu";
 import { accountBtnData } from "./data";
+import { NavLink } from "react-router-dom";
 
 const DesktopNav: React.FC = () => {
   const { width } = useWindowSize();
@@ -32,14 +33,18 @@ const DesktopNav: React.FC = () => {
           alt=""
           className="h-14"
         />
-        <AppText
-          as="p"
-          weight="bold"
-          color="light"
-          className={"text-[22px] ml-14 underline-offset-[6px] cursor-pointer"}
-          children={"Go to Marketpage"}
-          decor="underline"
-        />
+        <NavLink to={"/"}>
+          <AppText
+            as="p"
+            weight="bold"
+            color="light"
+            className={
+              "text-[22px] ml-14 underline-offset-[6px] cursor-pointer"
+            }
+            children={"Go to Marketpage"}
+            decor="underline"
+          />
+        </NavLink>
       </div>
       <div className="flex items-center gap-x-3">
         <input

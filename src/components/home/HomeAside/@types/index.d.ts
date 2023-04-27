@@ -20,11 +20,17 @@ type HomeAsideFilterKeys =
   | "polygon amount"
   | "auto upload support";
 
-type HomeAsideFilter = Record<
-  HomeAsideFilterKeys,
-  HomeAsideFilterItem[] | string
->;
+type HomeAsideFilter = Record<HomeAsideFilterKeys, HomeAsideFilterItem[]>;
+
+type HomeAsideFilterProps = {
+  filters: HomeAsideFilter;
+};
+
+type HomeAsidePriceFilterProps = {
+  handlePriceFilter: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 type HomeAsideProps = {
   readonly className?: string | string[];
-};
+  toggleAside: (val: boolean) => void;
+} & Pick<HomeAsidePriceFilterProps, "handlePriceFilter">;

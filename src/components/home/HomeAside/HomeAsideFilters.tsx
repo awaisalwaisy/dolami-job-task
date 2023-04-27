@@ -1,8 +1,8 @@
 import { AppText } from "components/shared";
-import { filters } from "./data";
 import { capitalize } from "utils";
+import { useState } from "react";
 
-const HomeAsideFilters: React.FC = () => {
+const HomeAsideFilters: React.FC<HomeAsideFilterProps> = ({ filters }) => {
   return (
     <>
       {Object.keys(filters).map((key) => {
@@ -19,9 +19,10 @@ const HomeAsideFilters: React.FC = () => {
               {filterArr.map((filter: HomeAsideFilterItem) => (
                 <li key={filter.id} className="flex items-center gap-x-2">
                   <input
-                    name={filter.name}
+                    // name={filter.name}
                     type="checkbox"
                     className="checkbox checkbox-sm rounded"
+                    value={filter.name}
                   />
                   <AppText
                     as="p"
@@ -37,24 +38,6 @@ const HomeAsideFilters: React.FC = () => {
           </div>
         );
       })}
-      {/* <div>
-        <AppText as="h4" size="lg" weight="bold" className={"font-inter"}>
-          Contents
-        </AppText>
-        <ul>
-          <li className="flex items-center gap-x-2">
-            <input type="checkbox" className="checkbox checkbox-sm rounded" />
-            <AppText
-              as="p"
-              size="base"
-              weight="normal"
-              className={"font-inter"}
-            >
-              VRChat(Quest)
-            </AppText>
-          </li>
-        </ul>
-      </div> */}
     </>
   );
 };

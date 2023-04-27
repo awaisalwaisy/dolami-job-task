@@ -7,7 +7,7 @@ const HomeAsideCategory: React.FC<HomeAsideCategoryProps> = ({
   return (
     <>
       <ul>
-        <li className="ml-3">
+        <li className="ml-3 cursor-pointer">
           {options && (
             <ul>
               {options.map((option) => (

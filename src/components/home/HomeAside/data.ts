@@ -3,7 +3,7 @@ export const categories: HomeAsideCategory[] = [
     id: 0,
     name: "Full Avatar",
     options: [
-      {
+      /* {
         id: 0,
         name: "Human based",
         options: [
@@ -32,7 +32,7 @@ export const categories: HomeAsideCategory[] = [
       {
         id: 3,
         name: "Other",
-      },
+      }, */
     ],
   },
   {
@@ -57,38 +57,38 @@ export const filters: HomeAsideFilter = {
   price: [
     {
       id: 0,
-      label: "Under $10",
-      name: "under-10",
+      label: "Under $230",
+      name: "under-230",
     },
     {
       id: 1,
-      label: "$10 to $20",
-      name: "10-to-20",
+      label: "$240 to $350",
+      name: "240-to-350",
     },
     {
       id: 2,
-      label: "$20 to $30",
-      name: "20-to-30",
+      label: "$350 to $450",
+      name: "350-to-450",
     },
     {
       id: 3,
-      label: "$30 to $40",
-      name: "30-to-40",
+      label: "$450 to $550",
+      name: "450-to-550",
     },
     {
       id: 4,
-      label: "$40 to $50",
-      name: "40-to-50",
+      label: "$550 to $650",
+      name: "560-to-650",
     },
     {
       id: 5,
-      label: "$50 to $70",
-      name: "50-to-70",
+      label: "$650 to $800",
+      name: "650-to-800",
     },
     {
       id: 6,
-      label: "$70 & above",
-      name: "70-and-above",
+      label: "$800 & above",
+      name: "over-800",
     },
   ],
   "polygon amount": [
