@@ -32,4 +32,6 @@ interface ItemData {
 interface GlobalStore {
   searchTitle: string | null;
   setSearchTitle: (title: string) => void;
+  isCartDrawer: boolean;
+  setCartDrawer: (isCartDrawer: boolean) => void;
 }

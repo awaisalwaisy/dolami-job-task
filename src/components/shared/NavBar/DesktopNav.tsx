@@ -8,11 +8,13 @@ import NavMenu from "./NavMenu";
 import { accountBtnData } from "./data";
 import { NavLink } from "react-router-dom";
 import useGlobalStore from "stores/global-store";
+import { useCartStore } from "stores/cart-store";
 
 const DesktopNav: React.FC = () => {
   const { width } = useWindowSize();
   const accountBtn: NavbarAccountBtn[] = useMemo(() => accountBtnData, []);
   const [isMenu, setMenu] = useState(false);
+  const { setCartDrawer } = useGlobalStore();
 
   useEffect(() => {
     if (width < 1200 && accountBtn.length < 4) {
@@ -30,6 +32,12 @@ const DesktopNav: React.FC = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTitle(e.target.value);
   };
+
+  const handleCartDrawer = () => {
+    setCartDrawer(true);
+  };
+
+  const { cart } = useCartStore();
 
   return (
     <div
@@ -57,22 +65,32 @@ const DesktopNav: React.FC = () => {
       <div className="flex items-center gap-x-3">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search by title"
           className={`input ${styles["navbar-search"]}`}
           onChange={handleSearch}
         />
-
         {accountBtn.map((btn) => (
-          <button
-            key={btn.id}
-            className="btn btn-square bg-[#34353A] border-none max-md:hidden"
-          >
-            {btn.icon && <btn.icon className="h-6 w-6 text-white" />}
-            {btn.img && (
-              <img src={btn.img} alt="" className="h-12 w-12 rounded-md" />
-            )}
-          </button>
+          <>
+            <div className="indicator" key={btn.id}>
+              {btn.indicator && (
+                <span className="indicator-item badge badge-secondary">
+                  {cart.length}
+                </span>
+              )}
+
+              <button
+                className="btn btn-square bg-[#34353A] border-none max-md:hidden"
+                onClick={btn.label === "Cart" ? handleCartDrawer : () => {}}
+              >
+                {btn.icon && <btn.icon className="h-6 w-6 text-white" />}
+                {btn.img && (
+                  <img src={btn.img} alt="" className="h-12 w-12 rounded-md" />
+                )}
+              </button>
+            </div>
+          </>
         ))}
+
         {accountBtn.slice(-1).map((btn) => (
           <button
             key={btn.id}

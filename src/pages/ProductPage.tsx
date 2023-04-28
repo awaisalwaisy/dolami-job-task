@@ -1,16 +1,16 @@
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
 import { AppText } from "components/shared";
 import { itemsData } from "data/items-data";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useWindowSize } from "usehooks-ts";
+// import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import StarsRating from "react-star-rate";
+import { useCartStore } from "stores/cart-store";
 
 const ProductPage: React.FC = () => {
   const { id } = useParams();
-  const [quantity, setQuantity] = useState<number>(1);
+  // const [quantity, setQuantity] = useState<number>(0);
 
-  const handleQuantity = (type: string) => {
+  /* const handleQuantity = (type: string) => {
     if (type === "plus") {
       setQuantity(quantity + 1);
     } else {
@@ -18,11 +18,18 @@ const ProductPage: React.FC = () => {
         setQuantity(quantity - 1);
       }
     }
+  }; */
+
+  const navigate = useNavigate();
+
+  const gotoCheckout = () => {
+    navigate("/checkout");
   };
 
   const item = itemsData.find((item) => item.id === id);
 
-  const { width } = useWindowSize();
+  const addToCart = useCartStore((state) => state.addToCart);
+  const { cart } = useCartStore();
 
   return (
     <section className="grid grid-cols-2 max-lg:grid-cols-1 items-center justify-center m-10 gap-x-20">
@@ -70,7 +77,7 @@ const ProductPage: React.FC = () => {
           </AppText>
         </div>
         <div className="flex items-center gap-x-2">
-          <div className="flex items-center gap-x-2">
+          {/* <div className="flex items-center gap-x-2">
             <button
               className="btn btn-outline border-none bg-[#D9D9D9] hover:bg-[#441e84]"
               onClick={handleQuantity.bind(null, "minus")}
@@ -89,9 +96,17 @@ const ProductPage: React.FC = () => {
             >
               <PlusCircleIcon className="w-5 h-5" />
             </button>
-          </div>
-          <button className={`btn bg-[#441e84]`}>Add to cart</button>
-          <button className={`btn bg-[#441e84]`}>Buy now</button>
+          </div> */}
+          <button
+            className={`btn bg-[#441e84]`}
+            onClick={() => addToCart(item as ItemData)}
+            disabled={cart.some((cartItem) => cartItem.id === item?.id)}
+          >
+            Add to cart
+          </button>
+          <button className={`btn bg-[#441e84]`} onClick={gotoCheckout}>
+            Buy now
+          </button>
         </div>
         <div className="my-5 flex flex-col">
           <span>Total rating {item?.feedback?.rating}</span>

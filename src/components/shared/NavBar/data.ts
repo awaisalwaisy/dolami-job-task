@@ -9,6 +9,8 @@ export const accountBtnData: NavbarAccountBtn[] = [
   {
     id: 2,
     icon: ShoppingCartIcon,
+    indicator: true,
+    label: "Cart",
   },
   {
     id: 3,

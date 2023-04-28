@@ -5,6 +5,8 @@ const useGlobalStore = create<GlobalStore>(
     searchTitle: "",
     setSearchTitle: (title: string) =>
       set({ searchTitle: title.length >= 3 ? title : null }),
+    isCartDrawer: false,
+    setCartDrawer: (isCartDrawer: boolean) => set({ isCartDrawer }),
   })
 );
 

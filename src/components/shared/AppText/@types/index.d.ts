@@ -35,4 +35,7 @@ interface NavbarAccountBtn {
   readonly id: number;
   readonly icon?: ElementType;
   readonly img?: string;
+  readonly indicator?: boolean;
+  readonly label?: string;
+  action?: () => void;
 }
