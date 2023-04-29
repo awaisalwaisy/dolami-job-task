@@ -1,4 +1,4 @@
-import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
+// import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
 import { AppText } from "components/shared";
 import { itemsData } from "data/items-data";
 // import { useState } from "react";
