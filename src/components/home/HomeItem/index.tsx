@@ -1,6 +1,6 @@
 import { AppText } from "components/shared";
 import ShareIcon from "icons/ShareIcon";
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import { NavLink } from "react-router-dom";
 import StarsRating from "react-star-rate";
 import { HeartIcon } from "@heroicons/react/24/outline";
@@ -13,7 +13,7 @@ const HomeItem: React.FC<{ data: ItemData; id: string | number }> = ({
   id,
 }) => {
   // use faker to generate data
-  const generateData = (length: number) => {
+  /* const generateData = (length: number) => {
     const data = [];
     for (let i = 0; i < length; i++) {
       data.push({
@@ -43,7 +43,7 @@ const HomeItem: React.FC<{ data: ItemData; id: string | number }> = ({
       });
     }
     return data;
-  };
+  }; */
 
   // console.log(generateData(25));
 

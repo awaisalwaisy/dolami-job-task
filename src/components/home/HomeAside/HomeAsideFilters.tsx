@@ -1,6 +1,5 @@
 import { AppText } from "components/shared";
 import { capitalize } from "utils";
-import { useState } from "react";
 
 const HomeAsideFilters: React.FC<HomeAsideFilterProps> = ({ filters }) => {
   return (
